@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google" content="notranslate">
+  <title>多文档对照</title>
+  <link rel="icon" href="icons/icon32.png" type="image/png">
+  <link rel="stylesheet" href="controller.css">
+  <script type="module" src="controller.mjs"></script>
+</head>
+<body>
+  <header id="toolbar" class="toolbar">
+    <div class="brand"><img src="icons/icon32.png" width="26" height="26" alt=""><span>并排阅读 <small title="本地版本 0.1.1">v0.1.1</small></span></div>
+    <form id="search-form" class="search-form">
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="m15.5 15.5 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="sr-only">搜索参与联动的所有文档</span><input id="query" type="search" maxlength="200" placeholder="搜索同一处需求，例如：每日任务" required autocomplete="off"></label>
+      <button id="search" class="primary" type="submit" disabled>一起定位 <span aria-hidden="true">↗</span></button>
+      <div class="group-navigation" role="group" aria-label="所有勾选文档的匹配结果">
+        <button id="previous-all" type="button" aria-label="所有勾选文档一起到上一处匹配" title="所有勾选文档一起到上一处匹配" disabled>‹ <span>上一处</span></button>
+        <button id="next-all" type="button" aria-label="所有勾选文档一起到下一处匹配" title="所有勾选文档一起到下一处匹配" disabled><span>下一处</span> ›</button>
+      </div>
+    </form>
+    <div class="reading-size" role="group" aria-label="统一调整所有文档的阅读大小">
+      <button id="font-smaller" type="button" aria-label="缩小阅读字体" title="缩小阅读字体，图片与表格同比缩放">A−</button>
+      <button id="font-reset" type="button" aria-label="恢复默认阅读大小" title="恢复默认阅读大小">100%</button>
+      <button id="font-larger" type="button" aria-label="放大阅读字体" title="放大阅读字体，图片与表格同比缩放">A+</button>
+    </div>
+    <label class="switch" title="优先对齐共同正文，没有共同片段时按相对阅读进度跟随"><input id="sync" type="checkbox" role="switch" disabled><span class="switch-track" aria-hidden="true"></span><span>联动滚动</span></label>
+    <span class="toolbar-divider" aria-hidden="true"></span>
+    <button id="connect" class="quiet" type="button" hidden>连接飞书</button>
+    <button id="add-open" class="quiet" type="button">＋ 文档 <span id="count">0</span></button>
+    <button id="fullscreen" class="icon-button" type="button" title="切换全屏" aria-label="切换全屏"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M3 13v4h4M17 13v4h-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button id="collapse" class="icon-button" type="button" title="收起工具条，专注阅读；⌘F / Ctrl+F 可重新展开" aria-label="收起工具条"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 12 5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </header>
+  <button id="reveal" class="reveal" type="button" aria-label="展开搜索工具条" title="展开搜索 · ⌘F / Ctrl+F" hidden>⌕ 搜索</button>
+  <p id="notice" role="status" aria-live="polite" hidden></p>
+  <main id="workspace" aria-label="并排阅读的原文档">
+    <section id="empty" class="empty">
+      <div class="empty-pages" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h1>同一处需求，放在一起看。</h1>
+      <p>添加几份飞书文档，在这里并排阅读。<br>搜一次，各份原文分别定位。</p>
+      <button id="empty-add" class="primary" type="button">＋ 添加文档</button>
+      <span class="privacy-note">内容留在本机 · 保留图片、表格与评论</span>
+    </section>
+  </main>
+  <dialog id="add-dialog">
+    <div class="dialog-heading"><div><h2>添加要对照的文档</h2><p>每行一份，数量不限。</p></div><button id="add-close" class="icon-button" type="button" aria-label="关闭添加文档">×</button></div>
+    <form id="add-form">
+      <label class="sr-only" for="urls">飞书文档链接，每行一份</label>
+      <textarea id="urls" rows="6" placeholder="https://example.feishu.cn/wiki/…" required spellcheck="false"></textarea>
+      <p class="permission-note">仅在本机显示、查找和滚动你添加的飞书文档。连接时需授予飞书站点访问权限，不上传正文，不读取 Cookie。</p>
+      <p id="add-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button id="add" class="primary" type="submit">添加并阅读 <span aria-hidden="true">↗</span></button></div>
+    </form>
+  </dialog>
+</body>
+</html>

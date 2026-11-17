@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "多文档对照",
+  "version": "0.1.1",
+  "description": "全屏并排阅读多份飞书原文档，统一搜索定位，独立或联动滚动。",
+  "permissions": ["scripting", "storage"],
+  "optional_host_permissions": ["https://example.feishu.cn/*"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "打开多文档对照",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": { "service_worker": "background.js" },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src 'none'; frame-src https://example.feishu.cn; base-uri 'none'; form-action 'none'"
+  }
+}

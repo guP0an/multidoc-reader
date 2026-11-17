@@ -1,0 +1,18 @@
+/* 只对工作台中由 reader.js 标记的文档生效，保留原文、评论及水印。 */
+html.multidoc-reader-frame .navigation-bar-wrapper {
+  display:none !important;
+}
+html.multidoc-reader-frame .bear-web-x-container {
+  position:fixed !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  border:0 !important;
+  z-index:10 !important;
+}
+html.multidoc-reader-frame .find-replace-box-wrapper {
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
